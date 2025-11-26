@@ -1,0 +1,154 @@
+:root {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.search-calendar {
+  width: clamp(240px, 90vw, 280px);
+  border: none;
+  border-radius: 0.75rem;
+  padding: 0.4rem 0.5rem 0.5rem;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+  font-family: inherit;
+  color: #0f172a;
+  display: inline-block;
+}
+
+.search-calendar .react-calendar__navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.search-calendar .react-calendar__navigation__label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  color: #0f172a;
+  border-radius: 999px;
+  padding: 0.1rem 0.6rem;
+  cursor: pointer;
+  transition: background 120ms ease;
+}
+
+.search-calendar .react-calendar__navigation__label:hover {
+  background: rgba(148, 163, 184, 0.15);
+}
+
+.cal-nav-label {
+  font-weight: inherit;
+  font-size: inherit;
+  color: inherit;
+  background: transparent;
+  border: none;
+  border-radius: inherit;
+  padding: 0.1rem 0.6rem;
+  cursor: pointer;
+}
+
+.search-calendar .react-calendar__navigation button {
+  border: none;
+  background: transparent;
+  height: 1.4rem;
+  width: 1.4rem;
+  border-radius: 999px;
+}
+
+.search-calendar .react-calendar__navigation button:disabled {
+  opacity: 0.35;
+}
+
+.search-calendar .react-calendar__month-view__weekdays {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.7rem;
+  color: #94a3b8;
+  text-align: center;
+}
+
+.search-calendar .react-calendar__tile {
+  border-radius: 999px;
+  height: 32px;
+  width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 0.7rem;
+  color: #0f172a;
+  transition: background 120ms ease, color 120ms ease, box-shadow 120ms ease;
+}
+
+.search-calendar .react-calendar__tile:hover:not(:disabled) {
+  background: rgba(37, 99, 235, 0.12);
+}
+
+.search-calendar .react-calendar__tile--now {
+  box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.15);
+}
+
+.search-calendar .react-calendar__tile--active,
+.search-calendar .react-calendar__tile--hasActive {
+  background: #2563eb;
+  color: #fff;
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.35);
+}
+
+.search-calendar .react-calendar__tile:disabled {
+  color: #cbd5f5;
+}
+
+.search-calendar .react-calendar__month-view__days__day--neighboringMonth {
+  color: #cbd5f5;
+}
+
+.search-calendar .react-calendar__year-view__months__month,
+.search-calendar .react-calendar__decade-view__years__year,
+.search-calendar .react-calendar__century-view__decades__decade {
+  padding: 0.75rem 0.5rem;
+  border-radius: 1rem;
+}
+
+@media (min-width: 640px) {
+  .search-calendar {
+    width: clamp(200px, 35vw, 260px);
+    border-radius: 1.25rem;
+    padding: 0.6rem 0.85rem 0.9rem;
+  }
+
+  .search-calendar .react-calendar__navigation button {
+    height: 1.8rem;
+    width: 1.8rem;
+  }
+
+  .search-calendar .react-calendar__tile {
+    height: 34px;
+    width: 34px;
+    font-size: 0.78rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .search-calendar {
+    width: clamp(240px, 25vw, 300px);
+    border-radius: 1.5rem;
+    padding: 0.75rem 1rem 1rem;
+  }
+
+  .search-calendar .react-calendar__navigation button {
+    height: 2rem;
+    width: 2rem;
+  }
+
+  .search-calendar .react-calendar__tile {
+    height: 40px;
+    width: 40px;
+    font-size: 0.85rem;
+  }
+}
+
