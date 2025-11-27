@@ -157,7 +157,7 @@ export default function CarBookingForm({ car }) {
         <div className="flex justify-between">
           <div className="flex items-center gap-2">
             <span className="text-black font-semibold text-[clamp(19px, 3vw, 28px)] leading-normal">Enjoy a Deposit free ride for 360 AED / day</span>
-            <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" fontSize="20" className="cursor-pointer text-[#F18A1D]" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+            <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" fontSize="20" className="cursor-pointer text-[#F18A1D]" height="1em" width="1em" xmlns="	https://www.mkvluxury.com/assets/deposit-icon.svg">
               <g id="Circle_Info"><g><g><path d="M11.5,15a.5.5,0,0,0,1,0h0V10.981a.5.5,0,0,0-1,0Z"></path><circle cx="12" cy="8.999" r="0.5"></circle></g><path d="M12,2.065A9.934,9.934,0,1,1,2.066,12,9.945,9.945,0,0,1,12,2.065Zm0,18.867A8.934,8.934,0,1,0,3.066,12,8.944,8.944,0,0,0,12,20.932Z"></path></g></g></svg>
           </div>
           <label className="inline-flex items-center cursor-pointer">
@@ -167,7 +167,10 @@ export default function CarBookingForm({ car }) {
         </div>
         <div className="bg-white py-1 px-6 rounded-lg mt-3 flex justify-between items-center">
           <span className="text-[16px] font-semibold flex items-center gap-3">
-            <img alt="Deposit" loading="lazy" width="20" height="20" decoding="async" src="/assets/deposit-icon.svg" style={{ color: 'transparent' }} /> Deposit
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 36 36">
+              <path d="M0 28.5v3C0 33.982 6.047 36 13.5 36S27 33.982 27 31.5v-3c-2.9 2.046-8.212 3-13.5 3s-10.6-.956-13.5-3M22.5 9C29.953 9 36 6.982 36 4.5S29.953 0 22.5 0 9 2.018 9 4.5 15.047 9 22.5 9M0 21.122v3.628c0 2.482 6.047 4.5 13.5 4.5S27 27.232 27 24.75v-3.628c-2.9 2.391-8.22 3.628-13.5 3.628S2.9 23.513 0 21.122m29.25.773C33.279 21.115 36 19.666 36 18v-3a17.3 17.3 0 0 1-6.75 2.426ZM13.5 11.25C6.047 11.25 0 13.767 0 16.875S6.047 22.5 13.5 22.5 27 19.983 27 16.875s-6.047-5.625-13.5-5.625m15.42 3.959c4.219-.759 7.08-2.25 7.08-3.959v-3c-2.5 1.765-6.785 2.714-11.3 2.939a7.87 7.87 0 0 1 4.22 4.02" data-name="Deposit icon"/>
+            </svg>
+            Deposit
           </span>
           <span className="text-[16px] font-semibold">AED 15000</span>
         </div>
@@ -184,7 +187,10 @@ export default function CarBookingForm({ car }) {
         </div>
         <div className="bg-white py-1 px-6 rounded-lg mt-3 flex justify-between items-center">
           <span className="text-[16px] font-semibold flex items-center gap-3">
-            <img alt="KM" loading="lazy" width="20" height="20" decoding="async" src="/assets/km-icon.svg" style={{ color: 'transparent' }} /> Kilometer Limit
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 40.5 27">
+              <path d="m40.3 23.813-9.829-22.5A2.14 2.14 0 0 0 28.524 0h-6.861l.172 1.628a.563.563 0 0 1-.56.622h-2.05a.563.563 0 0 1-.56-.622L18.837 0h-6.861a2.14 2.14 0 0 0-1.95 1.313L.2 23.813A2.245 2.245 0 0 0 2.147 27h13.84l.725-6.868a1.125 1.125 0 0 1 1.119-1.007h4.837a1.125 1.125 0 0 1 1.119 1.007L24.512 27h13.84a2.245 2.245 0 0 0 1.948-3.187M18.309 5a.56.56 0 0 1 .56-.5h2.763a.563.563 0 0 1 .56.5l.323 3.064a.844.844 0 0 1-.839.932h-2.85a.843.843 0 0 1-.839-.932zm3.884 11.872h-3.887a1.125 1.125 0 0 1-1.119-1.243l.356-3.375a1.125 1.125 0 0 1 1.119-1.007h3.175a1.125 1.125 0 0 1 1.119 1.007l.356 3.375a1.125 1.125 0 0 1-1.119 1.243" data-name="KM icon"/>
+            </svg>
+            Kilometer Limit
           </span>
           <span className="text-[16px] font-semibold">{car.kmIncluded} KM</span>
         </div>
@@ -215,7 +221,10 @@ export default function CarBookingForm({ car }) {
         </div>
         <div className="bg-white py-1 px-6 rounded-lg mt-3 flex justify-between items-center">
           <span className="text-[16px] font-semibold flex items-center gap-3">
-            <img alt="Protection" loading="lazy" width="20" height="20" decoding="async" src="/assets/protection-icon.svg" style={{ color: 'transparent' }} />Protection
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 42 44.796">
+              <path d="m39.419 7.321-16.8-7a4.21 4.21 0 0 0-3.229 0l-16.8 7A4.2 4.2 0 0 0 0 11.198c0 17.369 10.019 29.374 19.381 33.276a4.21 4.21 0 0 0 3.229 0C30.11 41.35 42 30.561 42 11.198a4.2 4.2 0 0 0-2.581-3.877m-18.41 31.728L21 5.711l15.391 6.414c-.289 13.247-7.184 22.846-15.382 26.924" data-name="Protection icon"/>
+            </svg>
+            Protection
           </span>
           <span className="text-[16px] font-semibold">Basic</span>
         </div>

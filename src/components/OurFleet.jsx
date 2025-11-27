@@ -2,17 +2,17 @@ import { useState, useRef, useEffect } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import SuperCarsGrid from "./SuperCarsGrid";
-import vehicle1 from "../assets/vehicle_1753797302018_1.webp";
-import vehicle2 from "../assets/vehicle_1753798409558_0.webp";
-import vehicle3 from "../assets/vehicle_1753799029160_0.webp";
-import vehicle4 from "../assets/vehicle_1753804231314_0.webp";
-import vehicle5 from "../assets/vehicle_1753804778499_0.webp";
-import vehicle6 from "../assets/vehicle_1754054135790_0.webp";
-import vehicle7 from "../assets/vehicle_1755003031853_0.webp";
-import vehicle8 from "../assets/vehicle_1755521426087_0.webp";
-import vehicle9 from "../assets/vehicle_1755947868278_0.webp";
-import vehicle10 from "../assets/vehicle_1757679276195_0.webp";
-import vehicle11 from "../assets/vehicle_1757680323155_0.webp";
+import vehicle1 from "../assets/Bentley Bentayga Mansory.webp";
+import vehicle2 from "../assets/Ferrari F8 Tributo.webp";
+import vehicle3 from "../assets/Ferrari F8 Spider.webp";
+import vehicle4 from "../assets/Ferrari Purosangue 2025.webp";
+import vehicle5 from "../assets/Ferrari 296 GTB 2024.webp";
+import vehicle6 from "../assets/Ferrari F8 Spider Yellow.webp";
+import vehicle7 from "../assets/Lamborghini Urus Mansory.webp";
+import vehicle8 from "../assets/Lamborghini UrusS.webp";
+import vehicle9 from "../assets/Rolls Royce Cullinan Black Badge.webp";
+import vehicle10 from "../assets/Rolls Royce Cullinan.webp";
+import vehicle11 from "../assets/McLaren Artura Spider 2025.webp";
 
 const vehicleImages = [
   vehicle1,
@@ -53,13 +53,10 @@ export default function OurFleet() {
     "Convertible Cars"
   ];
   const brandOptions = [
+    "Rolls Royce",
     "Lamborghini",
     "Ferrari",
-    "McLaren",
-    "Porsche",
-    "Audi",
-    "BMW",
-    "Mercedes-Benz"
+    "Bentley"
   ];
   const priceOptions = [
     "500 - 999",
@@ -102,7 +99,7 @@ export default function OurFleet() {
     }
   };
 
-  // Car data
+  // Car data - matches SuperCarsGrid
   const baseCars = [
     {
       title: "Rolls Royce Cullinan Black Badge",
@@ -113,11 +110,11 @@ export default function OurFleet() {
       kmIncluded: "200",
       engine: "V12",
       seating: "4 - 5",
-      image: vehicle3,
+      image: vehicle9,
     },
     {
       title: "Lamborghini Urus Performante",
-      categories: ["Performance SUV", "Supercars"],
+      categories: ["Luxury SUV"],
       brand: "Lamborghini",
       price: 6599,
       prevPrice: "6999",
@@ -125,24 +122,23 @@ export default function OurFleet() {
       engine: "V8",
       seating: "4 - 5",
       badge: "Best Seller of the Month",
-      image: vehicle2,
+      image: vehicle7,
     },
     {
-      title: "Ferrari F8 Tributo",
+      title: "Lamborghini Urus S",
       categories: ["Coupe", "Supercars"],
-      brand: "Ferrari",
+      brand: "Lamborghini",
       price: 5999,
       prevPrice: "6499",
       kmIncluded: "150",
       engine: "V8",
       seating: "0 - 2",
-      badge: "Ferrari Collection",
-      image: vehicle1,
+      image: vehicle8,
     },
     {
-      title: "McLaren 720S Spider",
-      categories: ["Convertible Cars", "Supercars"],
-      brand: "McLaren",
+      title: "Ferrari Purosangue 2025",
+      categories: ["Supercars"],
+      brand: "Ferrari",
       price: 6199,
       prevPrice: "6599",
       kmIncluded: "160",
@@ -152,48 +148,70 @@ export default function OurFleet() {
       image: vehicle4,
     },
     {
-      title: "Porsche 911 Turbo S",
-      categories: ["Supercars", "Luxury Cars"],
-      brand: "Porsche",
+      title: "Ferrari 296 GTB 2024",
+      categories: ["Supercars"],
+      brand: "Ferrari",
       price: 5499,
       prevPrice: "5999",
       kmIncluded: "140",
-      engine: "V6",
+      engine: "V10",
       seating: "0 - 2",
       image: vehicle5,
     },
     {
-      title: "Audi R8 V10",
-      categories: ["Supercars", "Luxury Cars"],
-      brand: "Audi",
+      title: "Ferrari F8 Spider",
+      categories: ["Supercars", "Convertible Cars"],
+      brand: "Ferrari",
       price: 4999,
       prevPrice: "5499",
       kmIncluded: "130",
-      engine: "V10",
-      seating: "0 - 2",
-      image: vehicle6,
+      engine: "V8",
+      seating: "4 - 5",
+      image: vehicle3,
     },
     {
-      title: "BMW M8 Competition",
-      categories: ["Luxury Cars", "Supercars"],
-      brand: "BMW",
+      title: "Ferrari F8 Tributo",
+      categories: ["Supercars"],
+      brand: "Ferrari",
       price: 4499,
       prevPrice: "4999",
       kmIncluded: "120",
       engine: "V8",
-      seating: "4 - 5",
-      image: vehicle7,
+      seating: "0 - 2",
+      image: vehicle2,
     },
     {
-      title: "Mercedes-Benz AMG GT",
-      categories: ["Supercars", "Luxury Cars"],
-      brand: "Mercedes-Benz",
+      title: "Ferrari F8 Spider Yellow",
+      categories: ["Supercars", "Convertible Cars"],
+      brand: "Ferrari",
       price: 4799,
       prevPrice: "5299",
       kmIncluded: "125",
       engine: "V8",
       seating: "0 - 2",
-      image: vehicle8,
+      image: vehicle6,
+    },
+    {
+      title: "Rolls Royce Cullinan",
+      categories: ["Luxury Cars"],
+      brand: "Rolls Royce",
+      price: 4799,
+      prevPrice: "5299",
+      kmIncluded: "125",
+      engine: "V8",
+      seating: "0 - 2",
+      image: vehicle10,
+    },
+    {
+      title: "Bentley Bentayga Mansory",
+      categories: ["Luxury Cars", "Luxury SUV"],
+      brand: "Bentley",
+      price: 4799,
+      prevPrice: "5299",
+      kmIncluded: "125",
+      engine: "V8",
+      seating: "0 - 2",
+      image: vehicle1,
     },
   ];
 

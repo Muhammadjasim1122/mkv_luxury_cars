@@ -1,7 +1,35 @@
 import { useParams } from "react-router-dom";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import SuperCarsGrid from "../components/SuperCarsGrid";
+import Header from "./Header";
+import Footer from "./Footer";
+import SuperCarsGrid from "./SuperCarsGrid";
+
+// Helper function to convert slug to brand name
+const slugToBrandName = (slug) => {
+  const brandMap = {
+    "rolls-royce": "Rolls Royce",
+    "lamborghini": "Lamborghini",
+    "ferrari": "Ferrari",
+    "mclaren": "McLaren",
+    "porsche": "Porsche",
+    "audi": "Audi",
+    "bmw": "BMW",
+    "mercedes-benz": "Mercedes-Benz",
+    "bentley": "Bentley",
+    "aston-martin": "Aston Martin",
+    "maserati": "Maserati",
+    "jaguar": "Jaguar",
+    "land-rover": "Land Rover",
+    "range-rover": "Range Rover",
+    "lexus": "Lexus",
+    "infiniti": "Infiniti",
+    "genesis": "Genesis",
+    "tesla": "Tesla",
+  };
+  return brandMap[slug.toLowerCase()] || slug;
+};
+
+// Import baseCars from SuperCarsGrid (we'll export it)
+// For now, we'll duplicate the data structure
 import vehicle1 from "../assets/Bentley Bentayga Mansory.webp";
 import vehicle2 from "../assets/Ferrari F8 Tributo.webp";
 import vehicle3 from "../assets/Ferrari F8 Spider.webp";
@@ -14,14 +42,8 @@ import vehicle9 from "../assets/Rolls Royce Cullinan Black Badge.webp";
 import vehicle10 from "../assets/Rolls Royce Cullinan.webp";
 import vehicle11 from "../assets/McLaren Artura Spider 2025.webp";
 
-const vehicleImages = [
-  vehicle1, vehicle2, vehicle3, vehicle4, vehicle5, vehicle6,
-  vehicle7, vehicle8, vehicle9, vehicle10, vehicle11,
-];
-
-const allCars = [
+const baseCars = [
   {
-    id: 1,
     title: "Rolls Royce Cullinan Black Badge",
     categories: ["Luxury SUV", "Luxury Cars"],
     brand: "Rolls Royce",
@@ -33,7 +55,6 @@ const allCars = [
     image: vehicle9,
   },
   {
-    id: 2,
     title: "Lamborghini Urus Performante",
     categories: ["Luxury SUV"],
     brand: "Lamborghini",
@@ -46,7 +67,6 @@ const allCars = [
     image: vehicle7,
   },
   {
-    id: 3,
     title: "Lamborghini Urus S",
     categories: ["Coupe", "Supercars"],
     brand: "Lamborghini",
@@ -58,7 +78,6 @@ const allCars = [
     image: vehicle8,
   },
   {
-    id: 4,
     title: "Ferrari Purosangue 2025",
     categories: ["Supercars"],
     brand: "Ferrari",
@@ -71,7 +90,6 @@ const allCars = [
     image: vehicle4,
   },
   {
-    id: 5,
     title: "Ferrari 296 GTB 2024",
     categories: ["Supercars"],
     brand: "Ferrari",
@@ -83,7 +101,6 @@ const allCars = [
     image: vehicle5,
   },
   {
-    id: 6,
     title: "Ferrari F8 Spider",
     categories: ["Supercars", "Convertible Cars"],
     brand: "Ferrari",
@@ -95,7 +112,6 @@ const allCars = [
     image: vehicle3,
   },
   {
-    id: 7,
     title: "Ferrari F8 Tributo",
     categories: ["Supercars"],
     brand: "Ferrari",
@@ -107,7 +123,6 @@ const allCars = [
     image: vehicle2,
   },
   {
-    id: 8,
     title: "Ferrari F8 Spider Yellow",
     categories: ["Supercars", "Convertible Cars"],
     brand: "Ferrari",
@@ -119,7 +134,6 @@ const allCars = [
     image: vehicle6,
   },
   {
-    id: 9,
     title: "Rolls Royce Cullinan",
     categories: ["Luxury Cars"],
     brand: "Rolls Royce",
@@ -131,7 +145,6 @@ const allCars = [
     image: vehicle10,
   },
   {
-    id: 10,
     title: "Bentley Bentayga Mansory",
     categories: ["Luxury Cars", "Luxury SUV"],
     brand: "Bentley",
@@ -142,56 +155,37 @@ const allCars = [
     seating: "0 - 2",
     image: vehicle1,
   },
-  {
-    id: 11,
-    title: "McLaren Artura Spider 2025",
-    categories: ["Convertible Cars", "Supercars"],
-    brand: "McLaren",
-    price: 4799,
-    prevPrice: "5299",
-    kmIncluded: "125",
-    engine: "V6",
-    seating: "0 - 2",
-    image: vehicle11,
-  },
 ];
 
-// Function to convert route category to display category
-const routeToCategory = (routeCategory) => {
-  const categoryMap = {
-    "SuperCars": "Supercars",
-    "Luxury-Cars": "Luxury Cars",
-    "Luxury-SUV": "Luxury SUV",
-    "Convertible-Cars": "Convertible Cars",
-  };
-  return categoryMap[routeCategory] || routeCategory;
-};
+export default function BrandCars() {
+  const { brandName } = useParams();
+  const brand = slugToBrandName(brandName);
 
-export default function Category() {
-  const { categoryName } = useParams();
-  const category = routeToCategory(categoryName);
-
-  // Filter cars that match the category
-  const filteredCars = allCars.filter((car) => {
-    return car.categories.some((cat) => {
-      // Handle cases where categories might be strings with commas
-      const catString = typeof cat === 'string' ? cat : String(cat);
-      // Split by comma and check each part
-      const catParts = catString.split(',').map(c => c.trim());
-      return catParts.some(part => part === category);
-    });
-  });
+  // Filter cars by brand
+  const filteredCars = baseCars
+    .filter((car) => car.brand === brand)
+    .map((car, index) => ({
+      ...car,
+      id: index + 1,
+    }));
 
   return (
     <div className="min-h-screen bg-white">
       <Header />
-      
-      <main className="pt-[0px]">
-        <div className="px-4 sm:px-6 md:px-8 py-6 sm:py-8 md:py-10">
-          <SuperCarsGrid cars={filteredCars} />
+      <main className="pt-20 sm:pt-24">
+        <div className="container mx-auto px-4 py-8">
+         
+          {filteredCars.length > 0 ? (
+            <SuperCarsGrid cars={filteredCars} />
+          ) : (
+            <div className="text-center py-12">
+              <p className="text-xl text-gray-600">
+                No cars found for {brand}
+              </p>
+            </div>
+          )}
         </div>
       </main>
-
       <Footer />
     </div>
   );

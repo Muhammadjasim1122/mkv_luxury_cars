@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Footer() {
   return (
     <footer className="relative bg-[#03111a] px-4 sm:px-6 py-8 sm:py-10 md:py-12 text-white">
@@ -85,44 +87,44 @@ export default function Footer() {
               <h3 className="mb-3 sm:mb-4 text-sm sm:text-base font-bold">Brands</h3>
               <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-white">
                 <li>
-                  <a href="#" className="transition-colors hover:text-white">
+                  <Link to="/brands/rolls-royce" className="transition-colors hover:text-white">
                     Rolls Royce
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="transition-colors hover:text-white">
+                  <Link to="/brands/ferrari" className="transition-colors hover:text-white">
                     Ferrari
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="transition-colors hover:text-white">
+                  <Link to="/brands/lamborghini" className="transition-colors hover:text-white">
                     Lamborghini
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="transition-colors hover:text-white">
+                  <Link to="/brands/porsche" className="transition-colors hover:text-white">
                     Porsche
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="transition-colors hover:text-white">
+                  <Link to="/brands/mclaren" className="transition-colors hover:text-white">
                     McLaren
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="transition-colors hover:text-white">
+                  <Link to="/brands/lotus" className="transition-colors hover:text-white">
                     Lotus
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="transition-colors hover:text-white">
+                  <Link to="/brands/bentley" className="transition-colors hover:text-white">
                     Bentley
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="transition-colors hover:text-white">
+                  <Link to="/brands/mercedes-benz" className="transition-colors hover:text-white">
                     Mercedes - AMG
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -176,44 +178,44 @@ export default function Footer() {
               <h3 className="mb-3 sm:mb-4 text-sm sm:text-base font-bold">Top Models</h3>
               <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-white">
                 <li>
-                  <a href="#" className="transition-colors hover:text-white">
+                  <Link to="/our-fleet/ferrari-purosangue-2025" className="transition-colors hover:text-white">
                     Ferrari Purosangue
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="transition-colors hover:text-white">
+                  <Link to="/our-fleet/ferrari-296-gtb-2024" className="transition-colors hover:text-white">
                     Ferrari 296 GTB
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="transition-colors hover:text-white">
+                  <Link to="/our-fleet/rolls-royce-cullinan" className="transition-colors hover:text-white">
                     Rolls Royce Cullinan
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="transition-colors hover:text-white">
+                  <Link to="/our-fleet/mclaren-artura-spider-2025" className="transition-colors hover:text-white">
                     McLaren Artura Spider
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="transition-colors hover:text-white">
+                  <Link to="/our-fleet/lamborghini-urus-performante" className="transition-colors hover:text-white">
                     Lamborghini Urus Mansory
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="transition-colors hover:text-white">
+                  <Link to="/our-fleet/bentley-bentayga-mansory" className="transition-colors hover:text-white">
                     Bentley Bentayga Mansory
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="transition-colors hover:text-white">
+                  <Link to="/our-fleet/lamborghini-urus-s" className="transition-colors hover:text-white">
                     Lamborghini Urus S
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="transition-colors hover:text-white">
+                  <Link to="/our-fleet" className="transition-colors hover:text-white">
                     Mercedes-AMG G63
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>

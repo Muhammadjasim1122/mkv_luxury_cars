@@ -1,15 +1,16 @@
 import { Link } from "react-router-dom";
-import vehicle1 from "../assets/vehicle_1753797302018_1.webp";
-import vehicle2 from "../assets/vehicle_1753798409558_0.webp";
-import vehicle3 from "../assets/vehicle_1753799029160_0.webp";
-import vehicle4 from "../assets/vehicle_1753804231314_0.webp";
-import vehicle5 from "../assets/vehicle_1753804778499_0.webp";
-import vehicle6 from "../assets/vehicle_1754054135790_0.webp";
-import vehicle7 from "../assets/vehicle_1755003031853_0.webp";
-import vehicle8 from "../assets/vehicle_1755521426087_0.webp";
-import vehicle9 from "../assets/vehicle_1755947868278_0.webp";
-import vehicle10 from "../assets/vehicle_1757679276195_0.webp";
-import vehicle11 from "../assets/vehicle_1757680323155_0.webp";
+import { useCurrency } from "../contexts/CurrencyContext";
+import vehicle1 from "../assets/Bentley Bentayga Mansory.webp";
+import vehicle2 from "../assets/Ferrari F8 Tributo.webp";
+import vehicle3 from "../assets/Ferrari F8 Spider.webp";
+import vehicle4 from "../assets/Ferrari Purosangue 2025.webp";
+import vehicle5 from "../assets/Ferrari 296 GTB 2024.webp";
+import vehicle6 from "../assets/Ferrari F8 Spider Yellow.webp";
+import vehicle7 from "../assets/Lamborghini Urus Mansory.webp";
+import vehicle8 from "../assets/Lamborghini UrusS.webp";
+import vehicle9 from "../assets/Rolls Royce Cullinan Black Badge.webp";
+import vehicle10 from "../assets/Rolls Royce Cullinan.webp";
+import vehicle11 from "../assets/McLaren Artura Spider 2025.webp";
 
 // Helper function to convert title to slug
 const titleToSlug = (title) => {
@@ -45,7 +46,7 @@ const baseCars = [
     kmIncluded: "200",
     engine: "V12",
     seating: "4 - 5",
-    image: vehicle3,
+    image: vehicle9,
   },
   {
     title: "Lamborghini Urus Performante",
@@ -57,24 +58,23 @@ const baseCars = [
     engine: "V8",
     seating: "4 - 5",
     badge: "Best Seller of the Month",
-    image: vehicle2,
+    image: vehicle7,
   },
   {
     title: "Lamborghini Urus S",
     categories: ["Coupe", "Supercars"],
-    brand: "Ferrari",
+    brand: "Lamborghini",
     price: 5999,
     prevPrice: "6499",
     kmIncluded: "150",
     engine: "V8",
     seating: "0 - 2",
-    badge: "Ferrari Collection",
-    image: vehicle1,
+    image: vehicle8,
   },
   {
     title: "Ferrari Purosangue 2025",
-    categories: [ "Supercars"],
-    brand: "McLaren",
+    categories: ["Supercars"],
+    brand: "Ferrari",
     price: 6199,
     prevPrice: "6599",
     kmIncluded: "160",
@@ -84,64 +84,53 @@ const baseCars = [
     image: vehicle4,
   },
   {
-    title: "McLaren Artura Spider 2025",
-    categories: ["Convertible Cars, Supercars"],
-    brand: "Porsche",
+    title: "Ferrari 296 GTB 2024",
+    categories: ["Supercars"],
+    brand: "Ferrari",
     price: 5499,
     prevPrice: "5999",
     kmIncluded: "140",
-    engine: "V6",
+    engine: "V10",
     seating: "0 - 2",
     image: vehicle5,
   },
   {
-    title: "Ferrari 296 GTB 2024",
-    categories: ["Supercars"],
-    brand: "Audi",
+    title: "Ferrari F8 Spider",
+    categories: ["Supercars", "Convertible Cars"],
+    brand: "Ferrari",
     price: 4999,
     prevPrice: "5499",
     kmIncluded: "130",
-    engine: "V10",
-    seating: "0 - 2",
-    image: vehicle6,
+    engine: "V8",
+    seating: "4 - 5",
+    image: vehicle3,
   },
   {
-    title: "Ferrari F8 Spider",
-    categories: ["Supercars, Convertible Cars"],
-    brand: "BMW",
+    title: "Ferrari F8 Tributo",
+    categories: ["Supercars"],
+    brand: "Ferrari",
     price: 4499,
     prevPrice: "4999",
     kmIncluded: "120",
     engine: "V8",
-    seating: "4 - 5",
-    image: vehicle7,
+    seating: "0 - 2",
+    image: vehicle2,
+  },
+  {
+    title: "Ferrari F8 Spider Yellow",
+    categories: ["Supercars", "Convertible Cars"],
+    brand: "Ferrari",
+    price: 4799,
+    prevPrice: "5299",
+    kmIncluded: "125",
+    engine: "V8",
+    seating: "0 - 2",
+    image: vehicle6,
   },
   {
     title: "Rolls Royce Cullinan",
-    categories: [ "Luxury Cars"],
-    brand: "Mercedes-Benz",
-    price: 4799,
-    prevPrice: "5299",
-    kmIncluded: "125",
-    engine: "V8",
-    seating: "0 - 2",
-    image: vehicle8,
-  },
-  {
-    title: "Bentley Bentayga Mansory",
-    categories: ["Luxury Cars, Luxury SUV"],
-    brand: "Mercedes-Benz",
-    price: 4799,
-    prevPrice: "5299",
-    kmIncluded: "125",
-    engine: "V8",
-    seating: "0 - 2",
-    image: vehicle9,
-  },    
-  {
-    title: "Ferrari F8 Tributo",
-    categories: ["Supercars"],
-    brand: "Mercedes-Benz",
+    categories: ["Luxury Cars"],
+    brand: "Rolls Royce",
     price: 4799,
     prevPrice: "5299",
     kmIncluded: "125",
@@ -150,15 +139,15 @@ const baseCars = [
     image: vehicle10,
   },
   {
-    title: "Ferrari F8 Spider Yellow",
-    categories: ["Supercars, Convertible Cars"],
-    brand: "Mercedes-Benz",
+    title: "Bentley Bentayga Mansory",
+    categories: ["Luxury Cars", "Luxury SUV"],
+    brand: "Bentley",
     price: 4799,
     prevPrice: "5299",
     kmIncluded: "125",
     engine: "V8",
     seating: "0 - 2",
-        image: vehicle11,
+    image: vehicle1,
   },
 ];
 
@@ -174,6 +163,8 @@ const defaultCars = Array.from({ length: 12 }, (_, index) => {
 });
 
 export default function SuperCarsGrid({ cars = defaultCars }) {
+  const { convertPrice, getCurrencySymbol } = useCurrency();
+  
   return (
     <div>
     <div className="mb-6 sm:mb-8 text-center px-2 sm:px-4 md:px-8">
@@ -188,6 +179,9 @@ export default function SuperCarsGrid({ cars = defaultCars }) {
       <div className="mx-auto grid max-w-6xl gap-4 sm:gap-5 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         {cars.map((car) => {
           const carSlug = titleToSlug(car.title);
+          const convertedPrice = convertPrice(car.price);
+          const convertedPrevPrice = car.prevPrice ? convertPrice(parseInt(car.prevPrice)) : null;
+          const currencySymbol = getCurrencySymbol();
           return (
           <article
             key={car.id}
@@ -229,11 +223,18 @@ export default function SuperCarsGrid({ cars = defaultCars }) {
                 }}
               >
                 <div className="flex flex-col py-2">
-                  {car.prevPrice && (
-                    <span className="text-xs sm:text-sm text-slate-500 font-medium line-through py-2">{car.prevPrice} AED</span>
+                  {convertedPrevPrice && (
+                    <span className="text-xs sm:text-sm text-slate-500 font-medium line-through py-2">
+                      {currencySymbol === '$' || currencySymbol === '€' || currencySymbol === '£' 
+                        ? `${currencySymbol}${convertedPrevPrice.toLocaleString()}`
+                        : `${convertedPrevPrice.toLocaleString()} ${currencySymbol}`}
+                    </span>
                   )}
                   <span className="text-lg sm:text-[25px] font-bold">
-                    {car.price} AED <span className="text-xs sm:text-sm font-medium text-slate-500">/ Day</span>
+                    {currencySymbol === '$' || currencySymbol === '€' || currencySymbol === '£' 
+                      ? `${currencySymbol}${convertedPrice.toLocaleString()}`
+                      : `${convertedPrice.toLocaleString()} ${currencySymbol}`}
+                    <span className="text-xs sm:text-sm font-medium text-slate-500"> / Day</span>
                   </span>
                 </div>
                 <span className="flex items-center gap-1.5 sm:gap-2 text-sm sm:text-base font-semibold text-[#c27807] mt-10">

@@ -1,8 +1,9 @@
 import { useState, useRef, useEffect } from "react";
+import { useCurrency } from "../contexts/CurrencyContext";
 
 export default function CurrencySelector() {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedCurrency, setSelectedCurrency] = useState("AED");
+  const { selectedCurrency, setSelectedCurrency } = useCurrency();
   const containerRef = useRef(null);
 
   const currencies = [

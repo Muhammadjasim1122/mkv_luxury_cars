@@ -1,49 +1,92 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import FAQ from "./FAQ";
 
 // Import brand images from assets
-import brand1 from "../assets/brandsname/brand_1752678032122.webp";
-import brand2 from "../assets/brandsname/brand_1752677858992.webp";
-import brand3 from "../assets/brandsname/brand_1752677775029.webp";
-import brand4 from "../assets/brandsname/brand_1752677757334.webp";
-import brand5 from "../assets/brandsname/brand_1752677819427.webp";
-import brand6 from "../assets/brandsname/brand_1752677901991.webp";
-import brand7 from "../assets/brandsname/brand_1752678011866.webp";
-import brand8 from "../assets/brandsname/brand_1752677847467.webp";
-import brand9 from "../assets/brandsname/brand_1752677757166.webp";
-import brand10 from "../assets/brandsname/brand_1752678083133.webp";
-import brand11 from "../assets/brandsname/brand_1752677965676.webp";
-import brand12 from "../assets/brandsname/brand_1752677802512.webp";
-import brand13 from "../assets/brandsname/brand_1752677980578.webp";
-import brand14 from "../assets/brandsname/brand_1752677889392.webp";
-import brand15 from "../assets/brandsname/brand_1752677785617.webp";
-import brand16 from "../assets/brandsname/brand_1752678053411.webp";
-import brand17 from "../assets/brandsname/brand_1752677993374.webp";
-import brand18 from "../assets/brandsname/brand_1752677917842 (1).webp";
+import brand1 from "../assets/brandsname/mercedez.webp";
+import brand2 from "../assets/brandsname/lamborghini.webp";
+import brand3 from "../assets/brandsname/ferrai.webp";
+import brand4 from "../assets/brandsname/porsche.webp";
+import brand5 from "../assets/brandsname/audi.webp";
+import brand6 from "../assets/brandsname/bmw.webp";
+import brand7 from "../assets/brandsname/mercedez.webp";
+import brand8 from "../assets/brandsname/bentlay.webp";
+import brand9 from "../assets/brandsname/brand_1752677858992.webp";
+import brand10 from "../assets/brandsname/brand_1752677847467.webp";
+import brand11 from "../assets/brandsname/brand_1752677819427.webp";
+import brand12 from "../assets/brandsname/brand_1752677980578.webp";
+import brand13 from "../assets/brandsname/kandrover .webp";
+import brand14 from "../assets/brandsname/lotus.webp";
+import brand15 from "../assets/brandsname/ford.webp";
+import brand16 from "../assets/brandsname/rollsroyce.webp";
+import brand17 from "../assets/brandsname/gmc.webp";
+import brand18 from "../assets/brandsname/jetour.webp";
+
+// Helper function to convert brand name to slug
+const brandNameToSlug = (brandName) => {
+  return brandName
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, "-")
+    .replace(/[^a-z0-9-]/g, "")
+    .replace(/-+$/g, "");
+};
+
+// Mapping from brand images to brand names (based on CarDetails.jsx brandLogoMap)
+// brandLogoMap: "Rolls Royce": brand16, "Lamborghini": brand2, "Ferrari": brand3, etc.
+const brandImageToName = {
+  [brand16]: "Infiniti",
+  [brand2]: "Lamborghini",
+  [brand3]: "Ferrari",
+  [brand4]: "Porsche",
+  [brand5]: "Audi",
+  [brand6]: "BMW",
+  [brand7]: "Mercedes-Benz",
+  [brand8]: "Bentley",
+  [brand9]: "McLaren",
+  [brand10]: "Aston Martin",
+  [brand11]: "Maserati",
+  [brand12]: "Jaguar",
+  [brand13]: "Land Rover",
+  [brand14]: "Range Rover",
+  [brand15]: "Lexus",
+  [brand17]: "Genesis",
+  [brand18]: "Tesla",
+  // Fallback for brand1 (Infiniti or other)
+  [brand1]: "Bentley",
+};
 
 function BrandLogo({ image, index }) {
   const [imageError, setImageError] = useState(false);
+  const brandName = brandImageToName[image] || `Brand ${index + 1}`;
+  const brandSlug = brandNameToSlug(brandName);
 
   if (imageError) {
     return (
-      <div className="bg-white border border-gray rounded-lg sm:rounded-xl p-1 sm:p-2 md:p-4 flex items-center justify-center shadow-md h-[80px] sm:h-[100px] md:h-[120px] w-full">
-        <span className="text-xs text-slate-400">Brand {index + 1}</span>
-      </div>
+      <Link
+        to={`/brands/${brandSlug}`}
+        className="bg-white border border-gray rounded-lg sm:rounded-xl p-1 sm:p-2 md:p-4 flex items-center justify-center shadow-md h-[80px] sm:h-[100px] md:h-[120px] w-full hover:shadow-lg transition-shadow duration-300 cursor-pointer"
+      >
+        <span className="text-xs text-slate-400">{brandName}</span>
+      </Link>
     );
   }
 
   return (
-    <div className="bg-white border border-gray rounded-lg sm:rounded-xl p-2 sm:p-3 md:p-4 flex items-center justify-center shadow-md hover:shadow-lg transition-shadow duration-300 h-[80px] sm:h-[100px] md:h-[120px] w-full">
+    <Link
+      to={`/brands/${brandSlug}`}
+      className="bg-white border border-gray rounded-lg sm:rounded-xl p-2 sm:p-3 md:p-4 flex items-center justify-center shadow-md hover:shadow-lg transition-shadow duration-300 h-[80px] sm:h-[100px] md:h-[120px] w-full cursor-pointer"
+    >
       <img
         src={image}
-        alt={`Brand ${index + 1}`}
+        alt={brandName}
         className="w-[70%] h-[70%] object-contain"
         loading="lazy"
         onError={() => setImageError(true)}
       />
-    </div>
+    </Link>
   );
 }
 
