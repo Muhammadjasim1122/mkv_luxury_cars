@@ -15,8 +15,10 @@ import vehicle11 from "../assets/vehicle_1757680323155_0.webp";
 const titleToSlug = (title) => {
   return title
     .toLowerCase()
-    .replace(/\s+/g, "-")
-    .replace(/[^a-z0-9-]/g, "");
+    .trim()                    // remove leading/trailing spaces
+    .replace(/\s+/g, "-")      // spaces -> dashes
+    .replace(/[^a-z0-9-]/g, "")// remove non-url chars
+    .replace(/-+$/g, "");      // remove trailing dashes
 };
 
 const vehicleImages = [

@@ -105,7 +105,7 @@ export default function OurFleet() {
   // Car data
   const baseCars = [
     {
-      title: "Rolls Royce Cullinan Black Badge ",
+      title: "Rolls Royce Cullinan Black Badge",
       categories: ["Luxury SUV", "Luxury Cars"],
       brand: "Rolls Royce",
       price: 7499,

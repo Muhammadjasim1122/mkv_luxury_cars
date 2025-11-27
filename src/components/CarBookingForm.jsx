@@ -1,4 +1,12 @@
+import { useState } from "react";
+
 export default function CarBookingForm({ car }) {
+  const [showRequirements, setShowRequirements] = useState(false);
+  const [pickupDate, setPickupDate] = useState("");
+  const [dropoffDate, setDropoffDate] = useState("");
+  const [pickupCity, setPickupCity] = useState("Dubai");
+  const [dropoffCity, setDropoffCity] = useState("Dubai");
+
   return (
     <div className="w-full border border-gray-200 rounded-lg order-first lg:order-last p-[15px] md:p-[30px]">
       <div className="flex justify-between items-center mb-2">
@@ -18,7 +26,14 @@ export default function CarBookingForm({ car }) {
           </div>
           <div className="flex-grow flex justify-between items-center font-bold ps-2" style={{ backgroundColor: 'rgb(248, 242, 229)', borderRadius: '6px' }}>
             <div className="">Required Documents</div>
-            <p className="m-0 text-white rounded bg-[#e78f13] py-2.5 px-4 font-bold" style={{ cursor: 'pointer' }}>See the list</p>
+            <button
+              type="button"
+              className="m-0 text-white rounded bg-[#e78f13] py-2.5 px-4 font-bold"
+              style={{ cursor: 'pointer' }}
+              onClick={() => setShowRequirements(true)}
+            >
+              See the list
+            </button>
           </div>
         </div>
       </div>
@@ -41,49 +56,71 @@ export default function CarBookingForm({ car }) {
       <div className="mb-3 mt-2 rounded-lg">
         <div className="flex flex-col lg:flex-row justify-between gap-x-3 flex-wrap">
           <div className="flex flex-col flex-1">
-            <div className="mb-3 ps-3 flex flex-row items-center relative rounded-md bg-[#fff7ef] gap-[10px]">
-              <label className="form-label font-bold mb-1 sm:mb-0 sm:py-4 sm:px-2 w-[110px] whitespace-nowrap">Pick-up Date</label>
-              <button className="cursor-pointer items-center gap-2 whitespace-nowrap rounded-md text-sm transition-all disabled:pointer-events-none disabled:opacity-50 outline-none border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground px-4 py-2 has-[>svg]:px-3 flex-1 flex justify-between h-[50px] text-left font-semibold !bg-[#f18a1d] hover:!bg-[#db7d18] text-white" type="button">
-                <span><span>Pick a date</span></span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-calendar" aria-hidden="true">
-                  <path d="M8 2v4"></path>
-                  <path d="M16 2v4"></path>
-                  <rect width="18" height="18" x="3" y="4" rx="2"></rect>
-                  <path d="M3 10h18"></path>
-                </svg>
-              </button>
+            <div className="mb-3 ps-3 flex flex-row items-center rounded-md bg-[#fff7ef] gap-[10px]">
+              <label className="form-label font-bold mb-1 sm:mb-0 sm:py-4 sm:px-2 w-[110px] whitespace-nowrap">
+                Pick-up Date
+              </label>
+              <input
+                type="date"
+                value={pickupDate}
+                onChange={(e) => setPickupDate(e.target.value)}
+                className="cursor-pointer rounded-md text-sm outline-none border bg-[#f18a1d] hover:bg-[#db7d18] text-white font-semibold h-[50px] px-4 w-full"
+              />
             </div>
             <div className="mb-3 ps-3 flex flex-row items-center relative rounded-md bg-[#fff7ef] gap-[10px]">
               <label className="form-label font-bold mb-1 sm:mb-0 sm:py-4 sm:px-2 w-[110px] whitespace-nowrap">Pickup City</label>
-              <button type="button" className="border-input flex w-fit items-center justify-between gap-2 rounded-md border bg-transparent text-sm whitespace-nowrap shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 flex-1 py-4 px-2 !h-[50px] !bg-[#f18a1d] hover:!bg-[#db7d18] font-bold text-white">
-                <span>Dubai</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down size-4 opacity-50" aria-hidden="true">
+              <div className="relative flex-1">
+                <select
+                  value={pickupCity}
+                  onChange={(e) => setPickupCity(e.target.value)}
+                  className="appearance-none border-input w-full items-center justify-between gap-2 rounded-md border bg-transparent text-sm shadow-xs outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 py-4 px-2 h-[50px] !bg-[#f18a1d] hover:!bg-[#db7d18] font-bold text-white pr-10"
+                >
+                  <option>Dubai</option>
+                  <option>Abu Dhabi</option>
+                  <option>Sharjah</option>
+                  <option>Ajman</option>
+                  <option>Ras Al Khaimah</option>
+                  <option>Fujairah</option>
+                  <option>Umm Al Quwain</option>
+                </select>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 lucide lucide-chevron-down size-4 opacity-50" aria-hidden="true">
                   <path d="m6 9 6 6 6-6"></path>
                 </svg>
-              </button>
+              </div>
             </div>
           </div>
           <div className="flex flex-col flex-1">
-            <div className="mb-3 ps-3 flex flex-row items-center relative rounded-md bg-[#fff7ef] gap-[10px]">
-              <label className="form-label font-bold mb-1 sm:mb-0 sm:py-4 sm:px-2 w-[110px] whitespace-nowrap">Drop Off Date</label>
-              <button className="cursor-pointer items-center gap-2 whitespace-nowrap rounded-md text-sm transition-all disabled:pointer-events-none disabled:opacity-50 outline-none border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 has-[>svg]:px-3 flex-1 flex justify-between !h-[50px] text-left font-semibold !bg-[#f18a1d] hover:!bg-[#db7d18] text-white" type="button">
-                <span><span>Pick a date</span></span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-calendar" aria-hidden="true">
-                  <path d="M8 2v4"></path>
-                  <path d="M16 2v4"></path>
-                  <rect width="18" height="18" x="3" y="4" rx="2"></rect>
-                  <path d="M3 10h18"></path>
-                </svg>
-              </button>
+            <div className="mb-3 ps-3 flex flex-row items-center rounded-md bg-[#fff7ef] gap-[10px]">
+              <label className="form-label font-bold mb-1 sm:mb-0 sm:py-4 sm:px-2 w-[110px] whitespace-nowrap">
+                Drop Off Date
+              </label>
+              <input
+                type="date"
+                value={dropoffDate}
+                onChange={(e) => setDropoffDate(e.target.value)}
+                className="cursor-pointer rounded-md text-sm outline-none border bg-[#f18a1d] hover:bg-[#db7d18] text-white font-semibold h-[50px] px-4 w-full"
+              />
             </div>
             <div className="mb-3 ps-3 flex flex-row items-center relative rounded-md bg-[#fff7ef] gap-[10px]">
               <label className="form-label font-bold mb-1 sm:mb-0 sm:py-4 sm:px-2 w-[110px] whitespace-nowrap">Drop Off City</label>
-              <button type="button" className="border-input flex w-fit items-center justify-between gap-2 rounded-md border bg-transparent text-sm whitespace-nowrap shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 flex-1 py-4 px-2 !h-[50px] !bg-[#f18a1d] hover:!bg-[#db7d18] font-bold text-white">
-                <span>Dubai</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down size-4 opacity-50" aria-hidden="true">
+              <div className="relative flex-1">
+                <select
+                  value={dropoffCity}
+                  onChange={(e) => setDropoffCity(e.target.value)}
+                  className="appearance-none border-input w-full items-center justify-between gap-2 rounded-md border bg-transparent text-sm shadow-xs outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 py-4 px-2 h-[50px] !bg-[#f18a1d] hover:!bg-[#db7d18] font-bold text-white pr-10"
+                >
+                  <option>Dubai</option>
+                  <option>Abu Dhabi</option>
+                  <option>Sharjah</option>
+                  <option>Ajman</option>
+                  <option>Ras Al Khaimah</option>
+                  <option>Fujairah</option>
+                  <option>Umm Al Quwain</option>
+                </select>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 lucide lucide-chevron-down size-4 opacity-50" aria-hidden="true">
                   <path d="m6 9 6 6 6-6"></path>
                 </svg>
-              </button>
+              </div>
             </div>
           </div>
         </div>
@@ -288,6 +325,86 @@ export default function CarBookingForm({ car }) {
           </div>
         </div>
       </div>
+
+      {/* Rental Booking Requirements Modal */}
+      {showRequirements && (
+        <div className="fixed inset-0 z-50 bg-black/60">
+          <div
+            className="fixed top-[50%] left-[50%] z-50 grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border bg-white p-6 shadow-lg sm:max-w-md"
+            role="dialog"
+            aria-modal="true"
+          >
+            {/* Header */}
+            <div className="flex flex-col gap-2 text-center sm:text-left">
+              <h2 className="text-lg leading-none font-semibold">
+                Rental Booking Requirements
+              </h2>
+            </div>
+
+            {/* Body */}
+            <div className="py-3 text-slate-900 space-y-4 text-sm">
+              <div>
+                <h3 className="font-bold">For UAE Residents</h3>
+                <ul className="list-disc pl-5 mt-2 space-y-1">
+                  <li>UAE Driving License</li>
+                  <li>Emirates ID (Residential Visa may be acceptable)</li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="font-bold">For Tourists Visiting the UAE</h3>
+                <ul className="list-disc pl-5 mt-2 space-y-1">
+                  <li>Passport</li>
+                  <li>Home Country Driving License</li>
+                  <li>International Driving Permit (IDP), if required</li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="font-bold">Contact Info</h3>
+                <ul className="list-disc pl-5 mt-2 space-y-1">
+                  <li>Email ID</li>
+                  <li>Phone Number</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Footer */}
+            <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-center">
+              <button
+                type="button"
+                onClick={() => setShowRequirements(false)}
+                className="cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium h-9 px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-white transition-colors"
+              >
+                Close
+              </button>
+            </div>
+
+            {/* Close icon */}
+            <button
+              type="button"
+              onClick={() => setShowRequirements(false)}
+              className="absolute top-4 right-4 rounded-xs opacity-70 transition-opacity hover:opacity-100 focus:outline-hidden"
+              aria-label="Close"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M18 6 6 18" />
+                <path d="m6 6 12 12" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
