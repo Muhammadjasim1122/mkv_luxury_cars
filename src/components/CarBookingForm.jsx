@@ -339,7 +339,7 @@ export default function CarBookingForm({ car }) {
       {showRequirements && (
         <div className="fixed inset-0 z-50 bg-black/60">
           <div
-            className="fixed top-[50%] left-[50%] z-50 grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border bg-white p-6 shadow-lg sm:max-w-md"
+            className="fixed top-[50%] left-[50%] z-50 grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border bg-white p-6 shadow-lg sm:max-w-[200px]"
             role="dialog"
             aria-modal="true"
           >

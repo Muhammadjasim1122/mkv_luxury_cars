@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from "react";
 import { getBrandLogo } from "./CarDetails";
 
 export default function CarImageGallery({ 
@@ -11,6 +12,46 @@ export default function CarImageGallery({
   onPrev, 
   onKeyDown 
 }) {
+  // Mobile carousel state
+  const [mobileImageIndex, setMobileImageIndex] = useState(0);
+  const carouselRef = useRef(null);
+  
+  // Combine main image and gallery images for mobile carousel
+  const mobileImages = [car.mainImage, ...car.galleryImages];
+  
+  const nextMobileImage = () => {
+    setMobileImageIndex((prev) => (prev + 1) % mobileImages.length);
+  };
+  
+  const prevMobileImage = () => {
+    setMobileImageIndex((prev) => (prev - 1 + mobileImages.length) % mobileImages.length);
+  };
+
+  // Update carousel transform on index change and window resize
+  useEffect(() => {
+    const updateTransform = () => {
+      if (carouselRef.current) {
+        const content = carouselRef.current.querySelector('[data-slot="carousel-content"] > div');
+        if (content) {
+          // Get the container width (80% of viewport)
+          const containerWidth = carouselRef.current.offsetWidth;
+          // Calculate translateX: each slide is basis-full (100% of container) + pl-4 padding
+          // The -ml-4 on the flex container offsets the first slide's padding
+          // So we need to account for container width + padding (16px = 1rem)
+          const padding = 16; // pl-4 = 1rem = 16px
+          const slideWidth = containerWidth + padding;
+          const translateX = -mobileImageIndex * slideWidth;
+          content.style.transform = `translate3d(${translateX}px, 0px, 0px)`;
+        }
+      }
+    };
+
+    updateTransform();
+    
+    // Recalculate on window resize
+    window.addEventListener('resize', updateTransform);
+    return () => window.removeEventListener('resize', updateTransform);
+  }, [mobileImageIndex]);
   return (
     <>
       {/* Header Section */}
@@ -65,16 +106,88 @@ export default function CarImageGallery({
       </div>
 
       {/* Main Content - Image Gallery */}
+      {/* Mobile Carousel View */}
+      <div className="md:hidden mb-12">
+        <div className="relative">
+         
+
+          {/* Carousel Container */}
+          <div 
+            ref={carouselRef}
+            className="relative !mx-auto flex w-[80%]" 
+            role="region" 
+            aria-roledescription="carousel"
+          >
+            {/* Previous Button */}
+            {mobileImages.length > 1 && (
+              <button
+                onClick={prevMobileImage}
+                data-slot="carousel-previous"
+                className="cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 absolute size-8 rounded-full top-1/2 -left-12 -translate-y-1/2"
+                aria-label="Previous slide"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-left" aria-hidden="true">
+                  <path d="m12 19-7-7 7-7"></path>
+                  <path d="M19 12H5"></path>
+                </svg>
+                <span className="sr-only">Previous slide</span>
+              </button>
+            )}
+
+            {/* Carousel Content */}
+            <div className="overflow-hidden" data-slot="carousel-content">
+              <div className="flex -ml-4 transition-transform duration-300 ease-in-out">
+                {mobileImages.map((image, index) => (
+                  <div
+                    key={index}
+                    role="group"
+                    aria-roledescription="slide"
+                    data-slot="carousel-item"
+                    className="min-w-0 shrink-0 grow-0 basis-full pl-4 block"
+                  >
+                    <img
+                      alt={`Slide ${index}`}
+                      loading="lazy"
+                      width="400"
+                      height="300"
+                      decoding="async"
+                      className="block mx-auto w-full"
+                      src={image}
+                      style={{
+                        borderRadius: '25px',
+                        height: 'auto',
+                        objectFit: 'contain',
+                        maxWidth: '100%'
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Next Button */}
+            {mobileImages.length > 1 && (
+              <button
+                onClick={nextMobileImage}
+                data-slot="carousel-next"
+                className="cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 absolute size-8 rounded-full top-1/2 -right-12 -translate-y-1/2"
+                aria-label="Next slide"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right" aria-hidden="true">
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+                <span className="sr-only">Next slide</span>
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop Grid View */}
       <div className="hidden md:grid grid-cols-1 md:grid-cols-2 gap-5 mb-12">
         {/* Large Main Image - Left */}
         <div className="relative">
-          {/* Badge overlay - visible on mobile only (hidden on md+) */}
-          <div className="flex [@media(min-width:900px)]:hidden absolute top-5 right-5 items-center gap-2 bg-green-500 font-semibold px-3 py-1 rounded-[6px] text-normal z-10">
-            <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 576 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-              <path d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
-            </svg>
-            <span className="flex items-center mt-0.5">2 Digit Plate with Driver</span>
-          </div>
           <img
             src={car.mainImage}
             alt={`${car.title} main view`}
@@ -87,9 +200,9 @@ export default function CarImageGallery({
         </div>
 
         {/* Gallery Images - Right Column (2x2 grid) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="grid grid-cols-2 gap-5">
           {car.galleryImages.slice(0, 4).map((image, index) => (
-            <div key={index} className="w-full relative px-1">
+            <div key={index} className="w-full relative">
               <img
                 src={image}
                 alt={`${car.title} view ${index + 2}`}
@@ -97,7 +210,8 @@ export default function CarImageGallery({
                 width="600"
                 height="300"
                 decoding="async"
-                className="w-full h-full object-cover rounded-lg"
+                className="w-full h-full object-cover rounded-lg cursor-pointer"
+                onClick={onViewMore}
               />
               {index === 3 && (
                 <div 
